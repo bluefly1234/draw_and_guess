@@ -135,7 +135,7 @@ function countScore (ctx) {
   const answerNumber = Object.keys(scoreMap).length
   if (answerNumber === 1) { // 如果没有分数Map，那说明该人是第一个答对的 + `firstScroe` 分
     scoreMap[currentUserId] = firstScroe
-    // 如果是第一个答对的，游戏时间缩小原来的 一般
+    // 如果是第一个答对的，游戏时间缩小原来的 一半 30s
     const halfTime = currentGame.gameTime / 2
     if (playInfo.time > halfTime) {
       playInfo.time = halfTime

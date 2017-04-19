@@ -44,6 +44,7 @@ export default {
       socketEvents: {
         roomClose: this.showBackError,
         roomFull: this.showBackError,
+        // 新用户加入，重新渲染用户UI界面
         userEnter (data) {
           this.refreshUser(data)
         },
@@ -53,6 +54,7 @@ export default {
         userLeave ({id}) {
           delete this.userMap[id]
           this.userMap = {...this.userMap}
+          this.refreshUser(this.userMap)
         }
       },
       room: {},
@@ -91,7 +93,6 @@ export default {
     },
     showBackError (data) {
       this.loaded()
-      // this.$router.replace('/')
       this.$message(data.message)
     },
     enterSuccess (data) {
@@ -107,7 +108,6 @@ export default {
     },
     leavlRoom () {
       this.$webSocket.send({}, 'leaveRoom')
-      // this.$router.replace('/')
     }
   }
 }

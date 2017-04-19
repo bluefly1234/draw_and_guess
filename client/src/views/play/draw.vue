@@ -1,24 +1,29 @@
-<template lang="pug">
-div.draw-wrapper
-  .draw-wrap
-    canvas(@touchstart="start" @touchmove="move" @touchend="end" v-if="canDraw" ref="canvasDom")
-    canvas(v-else ref="canvasDom")
-    slot(name="ondraw")
-    .operator-wrap(v-if="canDraw")
-      color-select(@select-color = "selectColor" v-show="selectColorShow")
-      line-select(@select-line = "selectLine" v-show="selectLineShow", :color="setting.color")
-  .operator-btns.flex(v-if="canDraw")
-    div(@click="toggleSelectColor")
-      .color(:style="{background: setting.color}")
-    div(@click="toggleSelectLine")
-      .line(:style="{height: setting.line + 'px', background: setting.color}")
-      div {{setting.line}}
-    div
-      .iconfont.icon-weibiaoti545(@click="doAction('undo')")
-    div
-      .iconfont.icon-chexiao(@click="doAction('redo')")
-    div
-      .iconfont.icon-shanchu(@click="clear")
+<template>
+<div class="draw-wrapper">
+  <div class="draw-wrap">
+    <canvas @touchstart="start" @touchmove="move" @touchend="end" v-if="canDraw" ref="canvasDom"></canvas>
+    <canvas v-else ref="canvasDom"></canvas>
+    <slot name="ondraw"></slot>
+    <div class="operator-wrap" v-if="canDraw">
+      <color-select @select-color = "selectColor" v-show="selectColorShow"></color-select>
+      <line-select @select-line = "selectLine" v-show="selectLineShow" :color="setting.color"></line-select>
+    </div>
+  </div>
+  <div class="operator-btns flex" v-if="canDraw">
+    <div @click="toggleSelectColor">
+      <div class="color" :style="{background: setting.color}"></div>
+    </div>
+    <div @click="toggleSelectLine">
+      <div class="line" :style="{height: setting.line + 'px', background: setting.color}"></div>
+      <div>{{setting.line}}</div>
+    </div>
+    <div>
+      <div class="iconfont icon-weibiaoti545" @click="doAction('undo')"></div>
+    </div>
+    <div><div class="iconfont icon-chexiao" @click="doAction('redo')"></div></div>
+    <div><div class="iconfont icon-shanchu" @click="clear"></div></div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -30,8 +35,12 @@ export default {
   data () {
     return {
       socketEvents: {
+        // actionName: 'start' || 'move'
+        // data: x和y坐标
+        // setting: line和color
         drawAction (data) {
           if (!this.canDraw) {
+            console.log(data)
             this.setting = data.setting
             this.doAction(data.actionName, data.data, false)
           }
@@ -178,9 +187,6 @@ export default {
           break
         default:
           console.log('unknow actionName:', actionName)
-      }
-
-      if (sync && actionName !== 'move' && actionName !== 'start') {
       }
     },
     sendImage (data) {

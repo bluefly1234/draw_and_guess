@@ -3,7 +3,7 @@ import MessageDispatchService from '../service/MessageDispatchService'
 import SenderService from '../service/SenderService'
 export default class ConnectController {
   constructor (ws, globalMap) {
-    // 随机生成token和id，为了安全？
+    // 随机生成token和id
     this.token = uuid.v4()
     this.id = uuid.v4()
     this.username = ''

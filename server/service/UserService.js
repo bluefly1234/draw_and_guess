@@ -37,10 +37,6 @@ export default {
       loginUser()
     }
   },
-  // 不需要
-  changeName ({data, userClient}) {
-    userClient.username = data.username
-  },
   
   userNumber ({send, userMap}) {
     send(Object.values(userMap).filter(u => u.isOnline).length)

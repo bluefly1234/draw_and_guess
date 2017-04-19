@@ -1,5 +1,5 @@
 {
-  "name": "ydig-websocket",
+  "name": "draw-and-guess-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,16 +7,8 @@
     "dev": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/k55k32/ydig-websocket.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/k55k32/ydig-websocket/issues"
-  },
-  "homepage": "https://github.com/k55k32/ydig-websocket#readme",
   "dependencies": {
     "node-uuid": "^1.4.7",
     "ws": "^1.1.1",

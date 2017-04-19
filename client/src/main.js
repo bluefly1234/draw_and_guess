@@ -9,7 +9,9 @@ import 'mint-ui/lib/style.css'
 import '~/assets/less/golbal.less'
 import '~/assets/less/components.less'
 
+// 使用Router插件
 Vue.use(VueRouter)
+// 使用MintUI的message提示信息
 Vue.use(MintUI)
 
 const router = new VueRouter({ routes })
@@ -48,17 +50,15 @@ router.beforeEach((to, from, next) => {
           if (user.inGame) {
             router.replace({name: 'begin', params: {id: user.currentRoomId}})
           }
-          console.log('1')
-          
-        }).then(()=>{
-            webSocket.send({
-              name: 'j5team' + '的房间',
-              playNumber: 6,
-              type: '1',
-              playTimes: 1
-            },'createRoom')
-            next()
-          })
+        }).then(() => {
+          webSocket.send({
+            name: 'j5team' + '的房间',
+            playNumber: 6,
+            type: '1',
+            playTimes: 1
+          }, 'createRoom')
+          next()
+        })
       }
     })
     Vue.prototype.$webSocket = webSocket
@@ -71,8 +71,7 @@ router.afterEach(() => {
   Vue.prototype.loaded()
 })
 
-
-// 两个钩子函数
+// 全局混合，为每个Vue实例的自定义对象处理逻辑
 Vue.mixin({
   created () {
     const events = this.socketEvents
@@ -102,4 +101,4 @@ new Vue({
 
 document.addEventListener('touchmove', e => {
   e.preventDefault()
-}, { passive:false })
+}, { passive: false })

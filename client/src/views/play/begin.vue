@@ -149,9 +149,6 @@ export default {
     hideAnswerCart () {
       this.isShowAnswerCard = false
     },
-    sendMsg (msg) {
-      this.$refs.chat.send(msg)
-    },
     getGameData () {
       const vm = this
       vm.loading()
@@ -188,6 +185,7 @@ export default {
         }
       }, this.speed)
     },
+    // 重置聊天滚动栏
     stopAutoScroll () {
       this.messageListShow = false
       clearInterval(this.scrollInterval)

@@ -1,6 +1,6 @@
 <template>
 	<header class="header">
-    <span class="header__subject" v-show="gameStatus">{{isCurrentPlay ? '请画: ' : '提示: '}}{{gameDataKey}} {{typeName}}
+    <span class="header__subject" v-show="gameStatus">{{isCurrentPlay ? '请画: ' : '提示: '}}{{gameDataKey}}
     </span>
 		<span class="header__image">
 			<img src="../assets/logo.png" alt="你画我猜"/>

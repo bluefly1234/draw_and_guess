@@ -1,8 +1,7 @@
 {
-  "name": "you-draw-i-guess",
+  "name": "draw-and-guess-client",
   "version": "1.0.0",
-  "description": "a game you can play",
-  "author": "Diamond <458293193@qq.com>",
+  "description": "draw-and-guess",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
